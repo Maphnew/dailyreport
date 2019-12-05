@@ -1,5 +1,5 @@
 const mysql = require('mysql')
-const exportExcel = require('./src/sheetjs.js')
+const exportExcel = require('./src/exceljs-mdl.js')
 
 const connection = mysql.createConnection({
     host: '192.168.100.225',
@@ -68,9 +68,11 @@ const query = "SELECT T1.*, \
 connection.query(query, (error, result, fields) => {
     if (error) throw error;
 
-    console.log('HERE: ', result)
+    console.log(result)
+    const cellAlphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S','T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'AA', 'AB', 'AC']
+    const cellNumbers = [4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]
 
-    exportExcel(result)
+    mkxl(cellAlphabet, cellNumbers, result)
 })
 
 connection.end()
