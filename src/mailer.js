@@ -22,9 +22,8 @@ const mailer = (emails) => {
     let mailOptions = {
         from: MAIL_ID,
         to: emails,
-        subject: 'NODEMALER TEST!',
-        text: 'Hope this get to you',
-        html: '<H1>Daily Report</H1>',
+        subject: date.toISOString().slice(0,10)+' 일일리포트',
+        html: '<H3>Daily Report</H3>',
         attachments: [
             {
                 filename: date.toISOString().slice(0,10)+'_dailyreport.xlsx',
