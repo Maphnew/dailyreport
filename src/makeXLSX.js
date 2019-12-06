@@ -1,13 +1,20 @@
 const mysql = require('mysql')
 const mkxl = require('./exceljs-mdl')
+require("dotenv").config()
+
+const DB_HOST = process.env.DB_HOST
+const DB_PORT = process.env.DB_PORT
+const DB_USER = process.env.DB_USER
+const DB_PASS = process.env.DB_PASS
+const DB_DATABASE = process.env.DB_DATABASE
 
 const makeXLSX = () => {
     const connection = mysql.createConnection({
-        host: '192.168.100.225',
-        port: 3306,
-        user: 'root',
-        password: 'its@1234',
-        database: 'UYeG_KUMHO'
+        host: DB_HOST,
+        port: DB_PORT,
+        user: DB_USER,
+        password: DB_PASS,
+        database: DB_DATABASE
     })
     connection.connect()
 

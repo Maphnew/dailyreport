@@ -1,8 +1,8 @@
 const nodemailer = require('nodemailer')
 require("dotenv").config()
 
-const ENV_PASS = process.env.ENV_PASS
-const ENV_ID = process.env.ENV_ID
+const MAIL_PASS = process.env.MAIL_PASS
+const MAIL_ID = process.env.MAIL_ID
 
 const mailer = (emails) => {
     let transporter = nodemailer.createTransport({
@@ -12,21 +12,23 @@ const mailer = (emails) => {
         secure: false,
         requireTLS: true,
         auth: {
-            user: ENV_ID,
-            pass: ENV_PASS
+            user: MAIL_ID,
+            pass: MAIL_PASS
         }
     })
+    let date = new Date()
+    date.setDate(date.getDate() -1)
     
     let mailOptions = {
-        from: 'maphnewkim@gmail.com',
+        from: MAIL_ID,
         to: emails,
         subject: 'NODEMALER TEST!',
         text: 'Hope this get to you',
         html: '<H1>Daily Report</H1>',
         attachments: [
             {
-                filename: 'dailyreport.xlsx',
-                path: './dailyreport.xlsx',
+                filename: date.toISOString().slice(0,10)+'_dailyreport.xlsx',
+                path: './'+date.toISOString().slice(0,10)+'_dailyreport.xlsx',
     
             }
         ]

@@ -45,12 +45,23 @@ const mkxl = (alph, num, inputData) => {
                 right: {style:'thin'},
             }
         }
+        for(let k=1; k<alph.length-1; k++) {
+            worksheet.getCell(alph[k]+'27').border ={
+                bottom: {style:'thin'},
+                right: {style:'dotted'},
+                left: {style:'dotted'},
+            }
+        }
         for(let j=0; j<alph.length; j++){
-            worksheet.getCell(alph[j]+'27').border ={
+            worksheet.getCell('A27').border ={
                 bottom: {style:'thin'},
                 left: {style:'thin'},
+            }
+            worksheet.getCell('AC27').border ={
+                bottom: {style:'thin'},
                 right: {style:'thin'},
             }
+
         }
     
         worksheet.getCell('B1').border = {
@@ -61,7 +72,7 @@ const mkxl = (alph, num, inputData) => {
         }
         let worksheet2 = workbook.getWorksheet(2);
         console.log('Make report done')
-        return workbook.xlsx.writeFile('dailyreport.xlsx')
+        return workbook.xlsx.writeFile(date.toISOString().slice(0,10)+'_dailyreport.xlsx')
         
     })
 
