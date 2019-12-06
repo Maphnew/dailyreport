@@ -2,4 +2,7 @@
 
 cd d:/workspace/workspaceNodeJS/dailyreport
 
-node src/mailer.js
+node app.js
+
+
+pause
