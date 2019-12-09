@@ -1,7 +1,7 @@
 # 금호섬유공업 Daily Report
 
-1. nodejs 설치
-2. npm 설치
+1. nodejs/npm 설치
+2. git 설치, dailyreort clone 하기
 3. node_module 설치
 ```bash
 $ npm install
@@ -26,9 +26,10 @@ FORM_FILE='dailyreport_form.xlsx'
 5. 메일주소 데이터베이스 저장확인
 6. gmail 설정 변경
 - Access allowed for less secure apps  
-9. batch 파일 경로 수정(dailyreport.bat)  
-8. 실행
+7. batch 파일 경로 수정(dailyreport.bat)  
+8. 실행 테스트
 - dailyreport.bat 파일 실행 또는
 ```bash
 $ node app.js
 ```
+9. 작업 스케줄러 등록

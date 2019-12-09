@@ -82,7 +82,7 @@ const makeXLSX = () => {
             temp = []
             for (let keyNm in result[i]) {
                 if (keyNm == '시간' || keyNm == 'FEED01 동작시간' || keyNm == 'FEED02 동작시간' || result[i][keyNm] == '-') {
-                    console.log(keyNm)
+                    // console.log(keyNm)
                     temp.push(result[i][keyNm])
                 } else {
                     let value = result[i][keyNm]
