@@ -26,10 +26,10 @@ const mkxl = (alph, num, inputData) => {
         for(let j=0; j<alph.length; j++){
             for(let i=0; i<num.length; i++){
                 worksheet.getCell(''+alph[j] + num[i]).border = {
-                    top: {style:'dotted'},
-                    left: {style:'dotted'},
-                    bottom: {style:'dotted'},
-                    right: {style:'dotted'}
+                    top: {style:'hair'},
+                    left: {style:'hair'},
+                    bottom: {style:'hair'},
+                    right: {style:'hair'}
                 }
                 worksheet.getCell(''+alph[j] + num[i]).font = {
                     size: 9
@@ -40,19 +40,19 @@ const mkxl = (alph, num, inputData) => {
         for(let i=0; i<num.length; i++){
 
             worksheet.getCell('A'+num[i]).border ={
-                bottom: {style:'dotted'},
+                bottom: {style:'hair'},
                 left: {style:'thin'},
             }
             worksheet.getCell('AC'+num[i]).border ={
-                bottom: {style:'dotted'},
+                bottom: {style:'hair'},
                 right: {style:'thin'},
             }
         }
         for(let k=1; k<alph.length-1; k++) {
             worksheet.getCell(alph[k]+'27').border ={
                 bottom: {style:'thin'},
-                right: {style:'dotted'},
-                left: {style:'dotted'},
+                right: {style:'hair'},
+                left: {style:'hair'},
             }
         }
         for(let j=0; j<alph.length; j++){
