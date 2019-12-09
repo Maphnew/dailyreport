@@ -32,7 +32,7 @@ const mkxl = (alph, num, inputData) => {
                     right: {style:'dotted'}
                 }
                 worksheet.getCell(''+alph[j] + num[i]).font = {
-                    size: 8
+                    size: 9
                 }
             }
             
