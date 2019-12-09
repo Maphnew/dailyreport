@@ -74,20 +74,22 @@ const makeXLSX = () => {
     results = []
     connection.query(query, (error, result, fields) => {
         if (error) throw error;
-        console.log(fields)
         
         const cellAlphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S','T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'AA', 'AB', 'AC']
         const cellNumbers = [4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]
-        const cellFloat = [0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        
         for (let i = 0; i < result.length; i++) {
             temp = []
-            j = 0
             for (let keyNm in result[i]) {
-                //console.log("key : " + keyNm + ", value : " + result[i][keyNm])
-                console.log(j)
-                let value = result[i][keyNm]
-                temp.push(value)
-                j++
+                if (keyNm == '시간' || keyNm == 'FEED01 동작시간' || keyNm == 'FEED02 동작시간' || result[i][keyNm] == '-') {
+                    console.log(keyNm)
+                    temp.push(result[i][keyNm])
+                } else {
+                    let value = result[i][keyNm]
+                    value = parseFloat(value)
+                    temp.push(value)
+                }
+
             }
             results.push(temp)
             temp = []

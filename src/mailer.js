@@ -3,6 +3,7 @@ require("dotenv").config()
 
 const MAIL_PASS = process.env.MAIL_PASS
 const MAIL_ID = process.env.MAIL_ID
+const FILE_NAME = process.env.FILE_NAME
 
 const mailer = (emails) => {
     let transporter = nodemailer.createTransport({
@@ -20,14 +21,14 @@ const mailer = (emails) => {
     date.setDate(date.getDate() -1)
     
     let mailOptions = {
-        from: MAIL_ID,
+        from: '아이티공간',
         to: emails,
         subject: date.toISOString().slice(0,10)+' 일일리포트',
         html: '<H3>Daily Report</H3>',
         attachments: [
             {
-                filename: date.toISOString().slice(0,10)+'_dailyreport.xlsx',
-                path: './'+date.toISOString().slice(0,10)+'_dailyreport.xlsx',
+                filename: FILE_NAME,
+                path: './'+FILE_NAME,
     
             }
         ]
@@ -40,7 +41,5 @@ const mailer = (emails) => {
         console.log('Email sent: ', info.response)
     })
 }
-
-//mailer('jinssakura@gmail.com, zcm3118@gmail.com, ksc@itsroom.com,')
 
 module.exports = mailer

@@ -7,6 +7,8 @@ const DB_PORT = process.env.DB_PORT
 const DB_USER = process.env.DB_USER
 const DB_PASS = process.env.DB_PASS
 const DB_DATABASE = process.env.DB_DATABASE
+const DB_MAIL_ADDRESS_TABLE = process.env.DB_MAIL_ADDRESS_TABLE
+const DB_MAIL_ADDRESS_COLUMN = process.env.DB_MAIL_ADDRESS_COLUMN
 
 const sendMail = () => {
     const connection = mysql.createConnection({
@@ -18,7 +20,7 @@ const sendMail = () => {
     })
     connection.connect()
 
-    const query = "SELECT email FROM EmailAddress"
+    const query = "SELECT "+DB_MAIL_ADDRESS_COLUMN+" FROM "+DB_MAIL_ADDRESS_TABLE
 
     let results = ''
     connection.query(query, (error, result, fields) => {
@@ -28,7 +30,7 @@ const sendMail = () => {
                 results = results + result[i][keyNm] + ',';
             }
         }
-        console.log('To: ', results)
+        // console.log('Email To: ', results)
         mailer(results)
     })
     

@@ -1,10 +1,13 @@
 const ExcelJS = require('exceljs')
+require("dotenv").config()
 
+const FILE_NAME = process.env.FILE_NAME
+const FORM_FILE = process.env.FORM_FILE
 
 const mkxl = (alph, num, inputData) => {
     // console.log(alph, num, inputData)
     let workbook = new ExcelJS.Workbook()
-    workbook.xlsx.readFile('./dailyreport_form.xlsx').then(()=>{
+    workbook.xlsx.readFile('./'+FORM_FILE).then(()=>{
         let worksheet = workbook.getWorksheet(1);
         
         for(let i=0; i<inputData.length; i++) {
@@ -72,7 +75,7 @@ const mkxl = (alph, num, inputData) => {
         }
         let worksheet2 = workbook.getWorksheet(2);
         console.log('Make report done')
-        return workbook.xlsx.writeFile(date.toISOString().slice(0,10)+'_dailyreport.xlsx')
+        return workbook.xlsx.writeFile(FILE_NAME)
         
     })
 
