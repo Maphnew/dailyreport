@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer')
+const moment = require('moment')
 require("dotenv").config()
 
 const MAIL_PASS = process.env.MAIL_PASS
@@ -17,13 +18,12 @@ const mailer = (emails) => {
             pass: MAIL_PASS
         }
     })
-    let date = new Date()
-    date.setDate(date.getDate() -1)
-    
+    const date = moment().subtract(1, 'days').format('YYYY-MM-DD')
+    // console.log("mailer: ",date)
     let mailOptions = {
         from: '아이티공간',
         to: emails,
-        subject: date.toISOString().slice(0,10)+' 일일리포트',
+        subject: date+' 일일리포트',
         html: '<H3>Daily Report</H3>',
         attachments: [
             {

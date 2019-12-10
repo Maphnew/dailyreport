@@ -1,4 +1,7 @@
 const ExcelJS = require('exceljs')
+const sendMail = require('./sendMail')
+const moment = require('moment')
+
 require("dotenv").config()
 
 const FILE_NAME = process.env.FILE_NAME
@@ -16,9 +19,10 @@ const mkxl = (alph, num, inputData) => {
         }
         // 오늘날짜 입력
         let cell = worksheet.getCell('B1')
-        let date = new Date()
-        date.setDate(date.getDate() -1)
-        cell.value = date.toISOString().slice(0,10)
+       
+        const date = moment().subtract(1, 'days').format('YYYY-MM-DD')
+        // console.log("exceljs-mdl: ",date)
+        cell.value = date
         // 가운데 정렬
         for(let i=0; i<num.length; i++){
             worksheet.getRow(num[i]).alignment = { vertical: 'middle', horizontal: 'center' };
@@ -75,6 +79,7 @@ const mkxl = (alph, num, inputData) => {
         }
         let worksheet2 = workbook.getWorksheet(2);
         console.log('Make report done')
+        sendMail()
         return workbook.xlsx.writeFile(FILE_NAME)
         
     })
